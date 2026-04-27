@@ -11,8 +11,24 @@
             <p class="date">
                 Published {{ post.publish }} by {{ post.author }}
             </p>
+            {{ post.body|truncatewords:30|Linebreaks }}
 
         </div>
     {% endfor %}
     {% include 'paginator.html' with page=page_obj %}
+     <div class="pagination">
+         <span class="step-link">
+             {% if page.has_previous %}
+             <a href="?page={{ page.previous_page_number }}">Avvalgi</a>
+             {% endif %}
+             <span class="current">
+                 Page {{ page.number }} of {{ page.paginator.num_pages }}.
+             </span>
+             {% if page.has_next %}
+                <a href="?page={{ page.next_page_number }}">Keyingi</a>
+             {% endif %}
+         </span>
+
+     </div>
+
 {% endblock %}
